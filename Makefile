@@ -28,10 +28,6 @@ wm:
 	sudo systemctl disable gdm
 	sudo systemctl enable sddm
 
-baseapps:
-	sudo dnf -y install vim zsh tmux yakuake synapse deepin-terminal
-	git clone --recursive https://github.com/sorin-ionescu/prezto.git "$(HOME)/.zprezto"
-
 sdkman:
 	curl -s "https://get.sdkman.io" | bash
 	source "$(HOME)/.sdkman/bin/sdkman-init.sh"

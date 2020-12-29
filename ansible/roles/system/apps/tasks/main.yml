@@ -42,13 +42,17 @@
     state: link
   tags:
     - desktop
-    - desktop-apps
+    - desktop-tools
     - snapd-link
 
 - name: Install "Utube" with option --classic
   community.general.snap:
     name: utube
     classic: true
+  tags:
+    - desktop
+    - desktop-apps
+    - utube
 
 - name: Install zPrezto
   script: files/installPrezto.sh
@@ -105,12 +109,23 @@
     - desktop-apps
     - gitkraken
 
+- name: Create "Applications" directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/Applications/"
+    state: directory
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
+    mode: '0755'
+  tags:
+    - desktop
+    - desktop-apps
+    - apps_dir
+
 - name: Download and unarchive Jetbrains Toolbox
   unarchive:
     src: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.19.7784.tar.gz
-    dest: ansible_env.HOME/Applications/
+    dest: "{{ lookup('env', 'HOME') }}/Applications/"
     remote_src: true
-    create: true
   tags:
     - desktop
     - desktop-apps
