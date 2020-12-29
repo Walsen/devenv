@@ -30,6 +30,20 @@
   tags:
     - desktop
     - desktop-apps
+    - non-third-party
+
+- name: Create Symbolic Link for snapd
+  become: True
+  file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    owner: root
+    group: root
+    state: link
+  tags:
+    - desktop
+    - desktop-apps
+    - snapd-link
 
 - name: Install zPrezto
   script: files/installPrezto.sh
@@ -85,3 +99,50 @@
     - desktop
     - desktop-apps
     - gitkraken
+
+- name: Download and unarchive Jetbrains Toolbox
+  unarchive:
+    src: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.19.7784.tar.gz
+    dest: ansible_env.HOME/Applications/
+    remote_src: True
+    create: True
+  tags:
+    - desktop
+    - desktop-apps
+    - toolbox
+
+- name: Install Skype app
+  become: True
+  dnf:
+    name: "https://go.skype.com/skypeforlinux-64.rpm"
+    state: present
+    update_cache: True
+    disable_gpg_check: True
+  tags:
+    - desktop
+    - desktop-apps
+    - skype
+
+- name: Install Slack app
+  become: True
+  dnf:
+    name: files/slack-4.12.0-0.1.fc21.x86_64.rpm
+    state: present
+    update_cache: True
+    disable_gpg_check: True
+  tags:
+    - desktop
+    - desktop-apps
+    - slack
+
+- name: Install Zoom app
+  become: True
+  dnf:
+    name: "https://zoom.us/client/latest/zoom_x86_64.rpm"
+    state: present
+    update_cache: True
+    disable_gpg_check: True
+  tags:
+    - desktop
+    - desktop-apps
+    - zoom

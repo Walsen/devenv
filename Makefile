@@ -38,5 +38,5 @@ sdkman:
 	sh $(PWD)/scripts/installGradle.sh
 
 iac:
-	sudo dnf -y install ansible 
-
+	sudo dnf -y install ansible
+	ansible-galaxy collection install community.general

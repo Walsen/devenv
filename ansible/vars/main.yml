@@ -10,11 +10,15 @@ desktop_tools:
   - yakuake
   - synapse
   - deepin-terminal
+  - x11vnc
+  - snapd
 
 desktop_apps:
   - quentier
   - nextcloud-client
   - nextcloud-client-dolphin
+  - kolourpaint
+  - remmina
   -
 
 vivaldi_version: '3.5.2115.81-1'
