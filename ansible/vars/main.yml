@@ -1,0 +1,20 @@
+---
+# vars file for apps
+base_apps:
+  - zsh
+  - vim
+  - tmux
+  - htop
+
+desktop_tools:
+  - yakuake
+  - synapse
+  - deepin-terminal
+
+desktop_apps:
+  - quentier
+  - nextcloud-client
+  - nextcloud-client-dolphin
+  -
+
+vivaldi_version: '3.5.2115.81-1'

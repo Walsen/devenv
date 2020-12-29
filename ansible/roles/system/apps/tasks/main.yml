@@ -1,0 +1,87 @@
+---
+- name: Install basic apps in the system
+  become: True
+  dnf:
+    state: present
+    name: "{{ item }}"
+    update_cache: True
+  loop: "{{ base_apps }}"
+  tags:
+    - base_apps
+
+- name: Install desktop tools
+  become: True
+  dnf:
+    state: present
+    name: '{{ item }}'
+    update_cache: True
+  loop: '{{ desktop_tools }}'
+  tags:
+    - desktop
+    - desktop-tools
+
+- name: Install desktop apps
+  become: True
+  dnf:
+    state: present
+    name: '{{ item }}'
+    update_cache: True
+  loop: '{{ desktop_apps }}'
+  tags:
+    - desktop
+    - desktop-apps
+
+- name: Install zPrezto
+  script: files/installPrezto.sh
+  tags:
+    - desktop
+    - shell-plugins
+    - prezto
+
+- name: Install Vivaldi Browser
+  become: True
+  dnf:
+    name: "https://downloads.vivaldi.com/stable/vivaldi-stable-{{ vivaldi_version }}.x86_64.rpm"
+    state: present
+    update_cache: True
+    disable_gpg_check: True
+  tags:
+    - desktop
+    - desktop-apps
+    - vivaldi
+
+- name: Install Atom editor
+  become: True
+  dnf:
+    name: "https://atom.io/download/rpm"
+    state: present
+    update_cache: True
+    disable_gpg_check: True
+  tags:
+    - desktop
+    - desktop-apps
+    - atom
+
+- name: Install BoostNote notepad
+  become: True
+  dnf:
+    name: "https://github.com/BoostIO/BoostNote.next/releases/latest/download/boost-note-linux.rpm"
+    state: present
+    update_cache: True
+    disable_gpg_check: True
+  tags:
+    - desktop
+    - desktop-apps
+    - boostnote
+
+- name: Install GitKraken app
+  become: True
+  dnf:
+    name: "https://release.gitkraken.com/linux/gitkraken-amd64.rpm"
+    state: present
+    update_cache: True
+    disable_gpg_check: True
+  tags:
+    - desktop
+    - desktop-apps
+    - gitkraken
