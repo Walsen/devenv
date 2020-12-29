@@ -45,10 +45,10 @@
     - desktop-tools
     - snapd-link
 
-- name: Install "Utube" with option --classic
+- name: Install "Utube" with option
   community.general.snap:
     name: utube
-    classic: true
+    # classic: true
   tags:
     - desktop
     - desktop-apps
@@ -143,13 +143,10 @@
     - desktop-apps
     - skype
 
-- name: Install Slack app
-  become: true
-  dnf:
-    name: files/slack-4.12.0-0.1.fc21.x86_64.rpm
-    state: present
-    update_cache: true
-    disable_gpg_check: true
+- name: Install "Slack" with option --classic
+  community.general.snap:
+    name: slack
+    classic: true
   tags:
     - desktop
     - desktop-apps
