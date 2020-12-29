@@ -1,31 +1,31 @@
 ---
 - name: Install basic apps in the system
-  become: True
+  become: true
   dnf:
     state: present
     name: "{{ item }}"
-    update_cache: True
+    update_cache: true
   loop: "{{ base_apps }}"
   tags:
     - base_apps
 
 - name: Install desktop tools
-  become: True
+  become: true
   dnf:
     state: present
     name: '{{ item }}'
-    update_cache: True
+    update_cache: true
   loop: '{{ desktop_tools }}'
   tags:
     - desktop
     - desktop-tools
 
 - name: Install desktop apps
-  become: True
+  become: true
   dnf:
     state: present
     name: '{{ item }}'
-    update_cache: True
+    update_cache: true
   loop: '{{ desktop_apps }}'
   tags:
     - desktop
@@ -33,7 +33,7 @@
     - non-third-party
 
 - name: Create Symbolic Link for snapd
-  become: True
+  become: true
   file:
     src: /var/lib/snapd/snap
     dest: /snap
@@ -45,6 +45,11 @@
     - desktop-apps
     - snapd-link
 
+- name: Install "Utube" with option --classic
+  community.general.snap:
+    name: utube
+    classic: true
+
 - name: Install zPrezto
   script: files/installPrezto.sh
   tags:
@@ -53,48 +58,48 @@
     - prezto
 
 - name: Install Vivaldi Browser
-  become: True
+  become: true
   dnf:
     name: "https://downloads.vivaldi.com/stable/vivaldi-stable-{{ vivaldi_version }}.x86_64.rpm"
     state: present
-    update_cache: True
-    disable_gpg_check: True
+    update_cache: true
+    disable_gpg_check: true
   tags:
     - desktop
     - desktop-apps
     - vivaldi
 
 - name: Install Atom editor
-  become: True
+  become: true
   dnf:
     name: "https://atom.io/download/rpm"
     state: present
-    update_cache: True
-    disable_gpg_check: True
+    update_cache: true
+    disable_gpg_check: true
   tags:
     - desktop
     - desktop-apps
     - atom
 
 - name: Install BoostNote notepad
-  become: True
+  become: true
   dnf:
     name: "https://github.com/BoostIO/BoostNote.next/releases/latest/download/boost-note-linux.rpm"
     state: present
-    update_cache: True
-    disable_gpg_check: True
+    update_cache: true
+    disable_gpg_check: true
   tags:
     - desktop
     - desktop-apps
     - boostnote
 
 - name: Install GitKraken app
-  become: True
+  become: true
   dnf:
     name: "https://release.gitkraken.com/linux/gitkraken-amd64.rpm"
     state: present
-    update_cache: True
-    disable_gpg_check: True
+    update_cache: true
+    disable_gpg_check: true
   tags:
     - desktop
     - desktop-apps
@@ -104,44 +109,44 @@
   unarchive:
     src: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.19.7784.tar.gz
     dest: ansible_env.HOME/Applications/
-    remote_src: True
-    create: True
+    remote_src: true
+    create: true
   tags:
     - desktop
     - desktop-apps
     - toolbox
 
 - name: Install Skype app
-  become: True
+  become: true
   dnf:
     name: "https://go.skype.com/skypeforlinux-64.rpm"
     state: present
-    update_cache: True
-    disable_gpg_check: True
+    update_cache: true
+    disable_gpg_check: true
   tags:
     - desktop
     - desktop-apps
     - skype
 
 - name: Install Slack app
-  become: True
+  become: true
   dnf:
     name: files/slack-4.12.0-0.1.fc21.x86_64.rpm
     state: present
-    update_cache: True
-    disable_gpg_check: True
+    update_cache: true
+    disable_gpg_check: true
   tags:
     - desktop
     - desktop-apps
     - slack
 
 - name: Install Zoom app
-  become: True
+  become: true
   dnf:
     name: "https://zoom.us/client/latest/zoom_x86_64.rpm"
     state: present
-    update_cache: True
-    disable_gpg_check: True
+    update_cache: true
+    disable_gpg_check: true
   tags:
     - desktop
     - desktop-apps
