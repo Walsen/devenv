@@ -12,6 +12,8 @@ desktop_tools:
   - deepin-terminal
   - x11vnc
   - snapd
+  - evolution
+  - evolution-ews
 
 desktop_apps:
   - quentier
