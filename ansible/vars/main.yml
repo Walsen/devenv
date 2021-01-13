@@ -21,5 +21,7 @@ desktop_apps:
   - nextcloud-client-dolphin
   - kolourpaint
   - remmina
+  - simplescreenrecorder
+  - vlc
 
 vivaldi_version: '3.5.2115.81-1'

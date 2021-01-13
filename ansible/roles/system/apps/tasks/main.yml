@@ -1,4 +1,28 @@
 ---
+- name: Install RPMFusion Free
+  become: true
+  dnf:
+    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-33.noarch.rpm"
+    state: present
+    update_cache: true
+    disable_gpg_check: true
+  tags:
+    - desktop
+    - desktop-apps
+    - rpmfusion-free
+
+- name: Install RPMFusion NonFree
+  become: true
+  dnf:
+    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-nonfree-release-33.noarch.rpm"
+    state: present
+    update_cache: true
+    disable_gpg_check: true
+  tags:
+    - desktop
+    - desktop-apps
+    - rpmfusion-nonfree
+
 - name: Install basic apps in the system
   become: true
   dnf:
