@@ -81,7 +81,7 @@
 - name: Install zPrezto
   script: files/installPrezto.sh
   tags:
-    - desktop
+    - cli
     - shell-plugins
     - prezto
 
@@ -187,3 +187,37 @@
     - desktop
     - desktop-apps
     - zoom
+
+- name: Install "Kubectl" with option --classic
+  community.general.snap:
+    name: kubectl
+    classic: true
+  tags:
+    - cli
+    - dev-tools
+    - kubectl
+
+- name: Download and unarchive AWSCli 2
+  unarchive:
+    src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: "/tmp/"
+    remote_src: true
+  tags:
+    - cli
+    - dev-tools
+    - awscli
+
+- name: Install AWSCli 2
+  command: /tmp/aws/install -i "{{ lookup('env', 'HOME') }}"/Applications/aws -b /usr/local/bin
+  become: true
+  tags:
+    - cli
+    - dev-tools
+    - awscli
+
+- name: Install Krew
+  command: files/installKrew.sh
+  tags:
+    - cli
+    - dev-tools
+    - krew
