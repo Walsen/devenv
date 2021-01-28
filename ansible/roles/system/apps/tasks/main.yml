@@ -14,7 +14,7 @@
 - name: Install RPMFusion NonFree
   become: true
   dnf:
-    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-nonfree-release-33.noarch.rpm"
+    name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-33.noarch.rpm"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -78,12 +78,12 @@
     - desktop-apps
     - utube
 
-- name: Install zPrezto
-  script: files/installPrezto.sh
-  tags:
-    - cli
-    - shell-plugins
-    - prezto
+# - name: Install zPrezto
+#   script: files/installPrezto.sh
+#   tags:
+#     - cli
+#     - shell-plugins
+#     - prezto
 
 - name: Install Vivaldi Browser
   become: true
@@ -134,25 +134,25 @@
     - gitkraken
 
 - name: Create "Applications" directory
+  become: false
   file:
-    path: "{{ lookup('env', 'HOME') }}/Applications/"
+    path: "/home/{{ ansible_env.USER }}/Applications/"
     state: directory
-    owner: "{{ lookup('env', 'USER') }}"
-    group: "{{ lookup('env', 'USER') }}"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
     mode: '0755'
   tags:
-    - desktop
-    - desktop-apps
+    - cli
     - apps_dir
 
 - name: Download and unarchive Jetbrains Toolbox
   unarchive:
     src: https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.19.7784.tar.gz
-    dest: "{{ lookup('env', 'HOME') }}/Applications/"
+    dest: "{{ ansible_env.HOME }}/Applications/"
     remote_src: true
   tags:
     - desktop
-    - desktop-apps
+    - dev-tools
     - toolbox
 
 - name: Install Skype app
@@ -208,7 +208,7 @@
     - awscli
 
 - name: Install AWSCli 2
-  command: /tmp/aws/install -i "{{ lookup('env', 'HOME') }}"/Applications/aws -b /usr/local/bin
+  command: /tmp/aws/install -i "{{ ansible_env.HOME }}"/Applications/aws -b /usr/local/bin
   become: true
   tags:
     - cli

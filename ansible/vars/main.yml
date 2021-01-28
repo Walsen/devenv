@@ -23,5 +23,6 @@ desktop_apps:
   - remmina
   - simplescreenrecorder
   - vlc
+  - tigervnc-server
 
 vivaldi_version: '3.5.2115.81-1'
