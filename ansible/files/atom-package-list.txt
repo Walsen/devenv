@@ -1,4 +1,4 @@
-Hydrogen@2.14.6
+Hydrogen@2.14.7
 atom-clock@0.1.18
 atom-material-syntax@1.0.8
 atom-material-ui@2.1.3
@@ -23,17 +23,17 @@ language-gradle@0.1.0
 language-groovy@0.7.0
 language-salt@0.4.0
 language-terraform@0.9.6
-linter@3.2.3
+linter@3.3.0
 linter-docker@0.3.2
 linter-markdown@5.2.11
-linter-ui-default@2.4.1
+linter-ui-default@3.2.5
 linter-yaml@1.1.0
 markdown-scroll-sync@2.1.2
 markdown-toc@0.4.2
 markdown-writer@2.11.11
-minimap@4.39.5
+minimap@4.39.9
 minimap-cursorline@1.0.2
-minimap-lens@0.8.1
+minimap-lens@0.8.2
 minimap-linter@2.2.2
 minimap-pigments@0.2.2
 minimap-selection@4.5.4
@@ -44,6 +44,6 @@ project-plus@1.0.0
 scroll-through-time@0.3.1
 split-diff@1.6.1
 teletype@0.13.4
-terminus@4.1.1
+terminus@4.1.2
 terraform-fmt@0.3.0
 tree-view-git-branch@0.1.2

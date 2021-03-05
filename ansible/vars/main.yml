@@ -5,6 +5,7 @@ base_apps:
   - vim
   - tmux
   - htop
+  - yamllint
 
 desktop_tools:
   - yakuake
