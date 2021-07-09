@@ -40,7 +40,7 @@ task backupAtomPackages {
     }
 
     File packages = new File("${projectDir}/ansible/files/atom-packages.list")
-    packages << output.toString().trim()
+    packages.write output.toString().trim()
   }
 
 }
