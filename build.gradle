@@ -48,7 +48,7 @@ task installBackupFileToAtom {
 
   doLast {
     exec {
-      workingDir "usr/bin"
+      workingDir "/usr/bin"
       executable 'apm'
       args 'install', '--packages-file', "${projectDir}/ansible/files/atom-packages.list"
     }
