@@ -4,16 +4,53 @@
  * This is a general purpose Gradle build.
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/6.7.1/samples
  */
-plugins {
-  id "com.hiberbee.gradle.ansible" version "0.4.0"
-}
+ buildscript {
+   repositories {
+     maven {
+       url "https://plugins.gradle.org/m2/"
+     }
+   }
+   dependencies {
+     classpath "gradle.plugin.com.hiberbee.gradle:gradle-plugin-ansible:0.4.0"
+   }
+ }
 
-# Configuration
-ansible {
-  inventory "inventory.yml"
-}
+ // apply plugin: "com.hiberbee.gradle.plugin.ansible"
 
-# Playbook tasks
-tasks.create("testPlaybook", PlaybookTask) {
-  playbook "playbook.yml"
+// Configuration
+// ansible {
+//   inventory "ansible/hosts"
+// }
+
+// Playbook tasks
+// tasks.create("testPlaybook", PlaybookTask) {
+//   playbook "playbook.yml"
+// }
+
+// Backup Atom packages
+task backupAtomPackages {
+
+  doLast {
+    def output = new ByteArrayOutputStream()
+    exec {
+      workingDir "/usr/bin"
+      executable 'apm'
+      args 'list', '--installed', '--bare'
+      standardOutput = output
+    }
+
+    File packages = new File("${projectDir}/ansible/files/atom-packages.list")
+    packages << output.toString().trim()
+  }
+
+}
+task installBackupFileToAtom {
+
+  doLast {
+    exec {
+      workingDir "usr/bin"
+      executable 'apm'
+      args 'install', '--packages-file', "${projectDir}/ansible/files/atom-packages.list"
+    }
+  }
 }
