@@ -2,7 +2,7 @@
 - name: Install RPMFusion Free
   become: true
   dnf:
-    name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-33.noarch.rpm"
+    name: "{{ RPM_FUSION_URL }}/{{ RPM_FUSION_BIN }}"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -14,7 +14,7 @@
 - name: Install RPMFusion NonFree
   become: true
   dnf:
-    name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-33.noarch.rpm"
+    name: "{{ RPM_FUSION_NON_FREE_URL }}/{{ RPM_FUSION_NONFREE_BIN }}"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -69,14 +69,24 @@
     - desktop-tools
     - snapd-link
 
-- name: Install "Utube" with option
+- name: Install snap apps
   community.general.snap:
-    name: utube
-    # classic: true
+    name: "{{ item }}"
+  loop: "{{ snap_apps }}"
   tags:
     - desktop
     - desktop-apps
-    - utube
+    - snap
+
+- name: Install snap classic apps
+  community.general.snap:
+    name: "{{ item }}"
+    classic: true
+  loop: "{{ snap_classic_apps }}"
+  tags:
+    - desktop
+    - desktop-apps
+    - snap_classic
 
 # - name: Install zPrezto
 #   script: files/installPrezto.sh
@@ -88,7 +98,7 @@
 - name: Install Vivaldi Browser
   become: true
   dnf:
-    name: "https://downloads.vivaldi.com/stable/vivaldi-stable-{{ vivaldi_version }}.x86_64.rpm"
+    name: "{{ VIVALDI_URL }}/vivaldi-stable-{{ vivaldi_version }}.x86_64.rpm"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -100,7 +110,7 @@
 - name: Install Atom editor
   become: true
   dnf:
-    name: "https://atom.io/download/rpm"
+    name: "{{ ATOM_URL }}"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -112,7 +122,7 @@
 - name: Install BoostNote notepad
   become: true
   dnf:
-    name: "https://github.com/BoostIO/BoostNote.next/releases/latest/download/boost-note-linux.rpm"
+    name: "{{ BOOSTNOTE_URL }}"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -124,7 +134,7 @@
 - name: Install GitKraken app
   become: true
   dnf:
-    name: "https://release.gitkraken.com/linux/gitkraken-amd64.rpm"
+    name: "{{ GITKRAKEN_URL }}"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -158,7 +168,7 @@
 - name: Install Skype app
   become: true
   dnf:
-    name: "https://go.skype.com/skypeforlinux-64.rpm"
+    name: "{{ SKYPE_URL }}"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -167,19 +177,10 @@
     - desktop-apps
     - skype
 
-- name: Install "Slack" with option --classic
-  community.general.snap:
-    name: slack
-    classic: true
-  tags:
-    - desktop
-    - desktop-apps
-    - slack
-
 - name: Install Zoom app
   become: true
   dnf:
-    name: "https://zoom.us/client/latest/zoom_x86_64.rpm"
+    name: "{{ ZOOM_URL }}"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -188,18 +189,9 @@
     - desktop-apps
     - zoom
 
-- name: Install "Kubectl" with option --classic
-  community.general.snap:
-    name: kubectl
-    classic: true
-  tags:
-    - cli
-    - dev-tools
-    - kubectl
-
 - name: Download and unarchive AWSCli 2
   unarchive:
-    src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    src: "{{ AWSCLI_URL }}"
     dest: "/tmp/"
     remote_src: true
   tags:

@@ -26,4 +26,15 @@ desktop_apps:
   - vlc
   - tigervnc-server
 
-vivaldi_version: '3.5.2115.81-1'
+snap_classic_apps:
+  - helm
+  - kubectl
+  - slack
+
+snap_apps:
+  - red-app
+  - utube
+  - telegram-desktop
+  - youtube-music-desktop-app
+
+vivaldi_version: '4.0.2312.38'

@@ -1,2 +1,16 @@
 ---
 # defaults file for apps
+RPM_FUSION_URL="https://download1.rpmfusion.org/free/fedora"
+RPM_FUSION_BIN="rpmfusion-free-release-33.noarch.rpm"
+
+RPM_FUSION_NONFREE_URL="https://download1.rpmfusion.org/nonfree/fedora"
+RPM_FUSION_NONFREE_BIN="rpmfusion-nonfree-release-33.noarch.rpm"
+
+VIVALDI_URL="https://downloads.vivaldi.com/stable"
+
+ATOM_URL="https://atom.io/download/rpm"
+BOOSTNOTE_URL="https://github.com/BoostIO/BoostNote.next/releases/latest/download/boost-note-linux.rpm"
+GITKRAKEN_URL="https://release.gitkraken.com/linux/gitkraken-amd64.rpm"
+SKYPE_URL="https://go.skype.com/skypeforlinux-64.rpm"
+ZOOM_URL="https://zoom.us/client/latest/zoom_x86_64.rpm"
+AWSCLI_URL="https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
