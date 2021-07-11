@@ -2,7 +2,7 @@
 - name: Install RPMFusion Free
   become: true
   dnf:
-    name: "{{ RPM_FUSION_URL }}/{{ RPM_FUSION_BIN }}"
+    name: "{{ RPM_FUSION_URL}}/{{ RPM_FUSION_BIN }}"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -14,7 +14,7 @@
 - name: Install RPMFusion NonFree
   become: true
   dnf:
-    name: "{{ RPM_FUSION_NON_FREE_URL }}/{{ RPM_FUSION_NONFREE_BIN }}"
+    name: "{{ RPM_FUSION_NONFREE_URL}}/{{ RPM_FUSION_NONFREE_BIN }}"
     state: present
     update_cache: true
     disable_gpg_check: true
@@ -206,6 +206,17 @@
     - cli
     - dev-tools
     - awscli
+
+- name: Download and unarchive EKSCTL
+  become: true
+  unarchive:
+    src: "{{ EKSCTL_URL }}"
+    dest: "/usr/local/bin"
+    remote_src: true
+  tags:
+    - cli
+    - dev-tools
+    - eksctl
 
 - name: Install Krew
   command: files/installKrew.sh
