@@ -219,8 +219,20 @@
     - eksctl
 
 - name: Install Krew
-  command: files/installKrew.sh
+  ansible.builtin.script:
+    cmd: files/installKrew.sh
   tags:
     - cli
     - dev-tools
     - krew
+
+- name: install K9s
+  become: true
+  unarchive:
+    src: "{{ K9S_URL }}"
+    dest: "/usr/local/bin"
+    remote_src: true
+  tags:
+    - cli
+    - dev-tools
+    - k9s
