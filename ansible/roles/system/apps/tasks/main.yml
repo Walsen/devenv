@@ -226,7 +226,7 @@
     - dev-tools
     - krew
 
-- name: install K9s
+- name: Install K9s
   become: true
   unarchive:
     src: "{{ K9S_URL }}"
@@ -236,3 +236,14 @@
     - cli
     - dev-tools
     - k9s
+
+- name: Install Argo CLI
+  become: true
+  get_url:
+    url: "{{ ARGO_CLI_URL }}"
+    dest: "/usr/local/bin/argocd"
+    mode: '755'
+  tags:
+    - cli
+    - dev-tools
+    - argocli
